@@ -7,7 +7,7 @@ RUN echo Copying the f.io Flask service into a service directory.
 COPY ./app /run
 WORKDIR /app
 RUN echo Installing Python packages listed in requirements.txt
-RUN pip3 install -r requirements.txt
+RUN pip3 install -r ./requirements.txt
 RUN echo Starting python and starting the Flask service...
 ENTRYPOINT ["python3"]
 CMD ["run.py"]
