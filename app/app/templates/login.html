@@ -1,0 +1,19 @@
+{% extends "/public_template.html" %}
+
+{% block title %}Login | f.io{% endblock %}
+
+{% block main %}
+
+
+<div class="login-clean" style="background-color: #CDFAF2;">
+    <form method="post" style="width: 400px;height: 400px;">
+        <h2 class="text-center">Get back to saving money!</h2><br>
+        <div class="form-group"><input class="form-control" type="email" name="email" placeholder="Email"></div>
+        <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Password"></div>
+        <div class="form-group"><button class="btn btn-primary btn-block" style="background-color: #6F7DA4;" type="submit">Log In</button></div>
+        <a class="forgot" href="/register">Don't have an account? Sign up here</a>
+        <a class="forgot" href="#">Forgot your password?</a>
+    </form>
+</div>
+    
+{% endblock %}
