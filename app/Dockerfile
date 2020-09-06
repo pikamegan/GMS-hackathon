@@ -4,10 +4,10 @@ RUN apt-get update -y
 RUN apt-get install -y python3-pip python3-dev build-essential
 RUN pip3 install --upgrade pip
 RUN echo Copying the f.io Flask service into a service directory.
-COPY ./app /run
+COPY ./app /app
 WORKDIR /app
 RUN echo Installing Python packages listed in requirements.txt
-RUN pip3 install -r ./requirements.txt
+RUN pip3 install -r requirements.txt
 RUN echo Starting python and starting the Flask service...
 ENTRYPOINT ["python3"]
 CMD ["run.py"]
