@@ -318,10 +318,10 @@ Resources:
   # This will allow you to more simply use CodePipeline in the future should
   # you want to use the service for Pipelines that interact with different
   # AWS services than the ones used in this workshop.
-  MythicalMysfitsServiceCodePipelineServiceRole:
+  fioServiceCodePipelineServiceRole:
     Type: AWS::IAM::Role
     Properties:
-      RoleName: MythicalMysfitsServiceCodePipelineServiceRole
+      RoleName: fioServiceCodePipelineServiceRole
       AssumeRolePolicyDocument:
         Statement:
         - Effect: Allow
@@ -332,7 +332,7 @@ Resources:
           - sts:AssumeRole
       Path: "/"
       Policies:
-      - PolicyName: MythicalMysfitsService-codepipeline-service-policy
+      - PolicyName: fioService-codepipeline-service-policy
         PolicyDocument:
           Statement:
           - Action:
@@ -368,10 +368,10 @@ Resources:
   # An IAM role that allows the AWS CodeBuild service to perform the actions
   # required to complete a build of our source code retrieved from CodeCommit,
   # and push the created image to ECR.
-  MythicalMysfitsServiceCodeBuildServiceRole:
+  fioServiceCodeBuildServiceRole:
     Type: AWS::IAM::Role
     Properties:
-      RoleName: MythicalMysfitsServiceCodeBuildServiceRole
+      RoleName: fioServiceCodeBuildServiceRole
       AssumeRolePolicyDocument:
         Version: "2012-10-17"
         Statement:
@@ -380,7 +380,7 @@ Resources:
             Service: codebuild.amazonaws.com
           Action: sts:AssumeRole
       Policies:
-      - PolicyName: "MythicalMysfitsService-CodeBuildServicePolicy"
+      - PolicyName: "fioService-CodeBuildServicePolicy"
         PolicyDocument:
           Version: "2012-10-17"
           Statement:
@@ -392,7 +392,7 @@ Resources:
             - "codecommit:Get*"
             - "codecommit:GitPull"
             Resource:
-            - Fn::Sub: arn:aws:codecommit:${AWS::Region}:${AWS::AccountId}:MythicalMysfitsServiceRepository
+            - Fn::Sub: arn:aws:codecommit:${AWS::Region}:${AWS::AccountId}:fioServiceRepository
           - Effect: "Allow"
             Action:
             - "logs:CreateLogGroup"
@@ -469,11 +469,11 @@ Outputs:
       Name: !Join [ ':', [ !Ref 'AWS::StackName', 'FargateContainerSecurityGroup' ] ]
   CodeBuildRole:
     Description: REPLACE_ME_CODEBUILD_ROLE_ARN
-    Value: !GetAtt 'MythicalMysfitsServiceCodeBuildServiceRole.Arn'
+    Value: !GetAtt 'fioServiceCodeBuildServiceRole.Arn'
     Export:
-      Name: !Join [ ':', [ !Ref 'AWS::StackName', 'MythicalMysfitsServiceCodeBuildServiceRole' ] ]
+      Name: !Join [ ':', [ !Ref 'AWS::StackName', 'fioServiceCodeBuildServiceRole' ] ]
   CodePipelineRole:
     Description: REPLACE_ME_CODEPIPELINE_ROLE_ARN
-    Value: !GetAtt 'MythicalMysfitsServiceCodePipelineServiceRole.Arn'
+    Value: !GetAtt 'fioServiceCodePipelineServiceRole.Arn'
     Export:
-      Name: !Join [ ':', [ !Ref 'AWS::StackName', 'MythicalMysfitsServiceCodePipelineServiceRole' ] ]
+      Name: !Join [ ':', [ !Ref 'AWS::StackName', 'fioServiceCodePipelineServiceRole' ] ]
